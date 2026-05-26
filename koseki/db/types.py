@@ -54,6 +54,17 @@ class Payment(Base):
     reason = Column(Unicode(length=255))
 
 
+# Plugin: Swish
+class SwishPaymentRequest(Base):
+    __tablename__: str = "swish_payment_request"
+
+    uuid = Column(Unicode(length=32), primary_key=True, nullable=False)
+    payer = Column(Integer, ForeignKey("person.uid"), nullable=False)
+    amount = Column(DECIMAL(10, 2), nullable=False)    
+    initalized = Column(DateTime, default=datetime.now)
+
+
+
 class Product(Base):
     __tablename__: str = "product"
 
